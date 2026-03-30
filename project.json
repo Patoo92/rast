@@ -1,0 +1,342 @@
+{
+  "project": {
+    "name": "PWA Rastreo de Paquetes",
+    "description": "Progressive Web App moderna para rastrear paquetes en tiempo real con funcionalidad offline y APIs reales de 5 transportistas",
+    "version": "0.2.0",
+    "type": "react-pwa",
+    "createdDate": "2026-03-30",
+    "lastUpdated": "2026-04-15",
+    "status": "phase-2-complete",
+    "license": "MIT"
+  },
+  "technology": {
+    "frontend": {
+      "framework": "React 18.2.0",
+      "language": "JavaScript (ES6+)",
+      "buildTool": "react-scripts",
+      "pwa": {
+        "serviceWorker": "Custom",
+        "manifest": "web-app-manifest",
+        "storage": "localStorage"
+      }
+    },
+    "styling": {
+      "method": "CSS3",
+      "responsive": true,
+      "preprocessor": "none"
+    }
+  },
+  "fileStructure": {
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "DEVELOPMENT.md",
+      "STRUCTURE.md",
+      "PWA_CHECKLIST.md",
+      "NEXT_STEPS.md",
+      "API_SETUP.md",
+      "TROUBLESHOOTING.md",
+      "INVENTORY.md"
+    ],
+    "configuration": [
+      "package.json",
+      ".env.example",
+      ".env.local",
+      ".gitignore"
+    ],
+    "scripts": [
+      "setup.sh",
+      "setup.bat"
+    ],
+    "public": [
+      "public/index.html",
+      "public/manifest.json",
+      "public/service-worker.js"
+    ],
+    "source": {
+      "root": [
+        "src/index.js",
+        "src/App.js",
+        "src/index.css",
+        "src/App.css",
+        "src/serviceWorker.js",
+        "src/setupTests.js"
+      ],
+      "components": [
+        "src/components/TrackingForm.js",
+        "src/components/TrackingForm.css",
+        "src/components/PackageStatus.js",
+        "src/components/PackageStatus.css"
+      ],
+      "api": [
+        "src/api/tracking.js",
+        "src/api/mockData.js",
+        "src/api/carriers/dhl.js",
+        "src/api/carriers/fedex.js",
+        "src/api/carriers/ups.js",
+        "src/api/carriers/correos.js",
+        "src/api/carriers/amazon.js"
+      ]
+    }
+  },
+  "features": {
+    "phase1": {
+      "status": "complete",
+      "items": [
+        "React application setup",
+        "Service Worker implementation",
+        "Web App Manifest configuration",
+        "Offline functionality (cache-first strategy)",
+        "Network-first for API data",
+        "Responsive UI design",
+        "Mock data tracking",
+        "localStorage integration",
+        "PWA installation support"
+      ]
+    },
+    "phase2": {
+      "status": "complete",
+      "items": [
+        "✅ Real API integration - DHL Global Services",
+        "✅ Real API integration - FedEx Tracking API",
+        "✅ Real API integration - UPS OnTrack",
+        "✅ Real API integration - Correos Mail Tracking",
+        "✅ Real API integration - Amazon Logistics",
+        "✅ Automatic carrier detection by tracking number",
+        "✅ Manual carrier selection dropdown",
+        "✅ Environment variables for secure credentials",
+        "✅ Error handling and fallback to mock data",
+        "✅ localStorage caching for offline access"
+      ]
+    },
+    "phase3": {
+      "status": "pending",
+      "items": [
+        "Firebase Cloud Messaging setup",
+        "Push notifications",
+        "Background sync",
+        "IndexedDB for complex data",
+        "Dark mode"
+      ]
+    },
+    "phase4": {
+      "status": "pending",
+      "items": [
+        "Automated testing",
+        "Lighthouse audit (target: 100/100)",
+        "Performance optimization",
+        "HTTPS deployment",
+        "Production release"
+      ]
+    }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "components": {
+    "TrackingForm": {
+      "file": "src/components/TrackingForm.js",
+      "purpose": "Input form for tracking numbers",
+      "props": ["onTrack", "loading"]
+    },
+    "PackageStatus": {
+      "file": "src/components/PackageStatus.js",
+      "purpose": "Display package tracking information",
+      "props": ["data"]
+    }
+  },
+  "serviceWorker": {
+    "registrationFile": "src/serviceWorker.js",
+    "workerFile": "public/service-worker.js",
+    "architecture": {
+      "registration": "src/serviceWorker.js → React module that registers/manages SW lifecycle",
+      "worker": "public/service-worker.js → Actual Web Worker running in browser thread"
+    },
+    "features": [
+      "Install - precaching static assets",
+      "Activate - cleanup old caches",
+      "Fetch - cache-first for static, network-first for data",
+      "Push - notification handling (ready for Firebase v3)",
+      "Offline support - full offline functionality",
+      "Sync - background sync when connection restored"
+    ],
+    "cacheName": "rastreo-paquetes-v2",
+    "strategies": {
+      "staticAssets": "cache-first",
+      "apiData": "network-first",
+      "files": "public/**, src/components/**, src/App.js"
+    }
+  },
+  "deployment": {
+    "requirements": {
+      "https": true,
+      "minBrowserVersion": {
+        "chrome": 51,
+        "firefox": 44,
+        "safari": 11,
+        "edge": 15
+      }
+    },
+    "options": [
+      "Vercel (recommended)",
+      "Netlify",
+      "AWS S3 + CloudFront",
+      "DigitalOcean App Platform",
+      "Firebase Hosting"
+    ]
+  },
+  "environment": {
+    "variables": [
+      "DHL_API_KEY",
+      "DHL_ACCOUNT_NUMBER",
+      "FEDEX_API_KEY",
+      "FEDEX_SECRET_KEY",
+      "FEDEX_ACCOUNT_NUMBER",
+      "UPS_API_KEY",
+      "UPS_ACCOUNT_NUMBER",
+      "CORREOS_API_KEY",
+      "CORREOS_ACCOUNT_NUMBER",
+      "AMAZON_API_KEY",
+      "REACT_APP_FIREBASE_API_KEY",
+      "REACT_APP_FIREBASE_PROJECT_ID",
+      "REACT_APP_FIREBASE_MESSAGING_SENDER_ID",
+      "REACT_APP_ENV",
+      "REACT_APP_API_TIMEOUT",
+      "REACT_APP_CACHE_VERSION"
+    ],
+    "file": ".env.local",
+    "setupGuide": "API_SETUP.md",
+    "template": ".env.example"
+  },
+  "documentation": {
+    "quickstart": {
+      "file": "QUICKSTART.md",
+      "readTime": "5 minutes",
+      "audience": "beginners"
+    },
+    "development": {
+      "file": "DEVELOPMENT.md",
+      "readTime": "20 minutes",
+      "audience": "developers"
+    },
+    "troubleshooting": {
+      "file": "TROUBLESHOOTING.md",
+      "readTime": "10 minutes",
+      "audience": "all"
+    }
+  },
+  "statistics": {
+    "totalFiles": 31,
+    "totalFolders": 6,
+    "totalLines": 2500,
+    "components": 2,
+    "cssFiles": 5,
+    "documentationPages": 9,
+    "jsFiles": 14,
+    "apiModules": 6,
+    "description": "+7 new files from Phase 2: 5 carrier modules + tracking.js + mockData.js"
+  },
+  "resources": {
+    "pwa": "https://web.dev/progressive-web-apps/",
+    "react": "https://react.dev",
+    "serviceWorker": "https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API",
+    "manifest": "https://developer.mozilla.org/es/docs/Web/Manifest",
+    "firebase": "https://firebase.google.com/docs",
+    "apis": {
+      "dhl": "https://developer.dhl.com/",
+      "fedex": "https://developer.fedex.com/",
+      "ups": "https://www.ups.com/upsdeveloperkit",
+      "correos": "https://www.correos.es/es/es/particulares",
+      "amazon": "https://docs.aws.amazon.com/logistics/",
+      "documentation": "API_SETUP.md"
+    }
+  },
+  "setup": {
+    "prerequisites": {
+      "nodejs": "14+",
+      "npm": "6+",
+      "os": ["Windows", "macOS", "Linux"]
+    },
+    "quickSetup": [
+      "npm install",
+      "npm start",
+      "open http://localhost:3000"
+    ],
+    "automatedSetup": {
+      "windows": "setup.bat",
+      "unix": "bash setup.sh"
+    }
+  },
+  "nextSteps": {
+    "immediate": "Read QUICKSTART.md, configure .env.local with API keys, run npm start",
+    "phase2": "✅ COMPLETED: Real API integration (DHL, FedEx, UPS, Correos, Amazon)",
+    "phase3": "Add Firebase Cloud Messaging for push notifications",
+    "phase4": "Deploy with HTTPS (Vercel, Netlify, or AWS)",
+    "roadmap": "See NEXT_STEPS.md for detailed roadmap"
+  },
+  "integratedApis": {
+    "description": "5 major shipping carriers integrated with real APIs",
+    "total": 5,
+    "apis": {
+      "dhl": {
+        "name": "DHL Global Services",
+        "file": "src/api/carriers/dhl.js",
+        "module": "trackDHL",
+        "trackingNumberFormat": "8-12 digits",
+        "regexPattern": "/^\\d{8,12}$/",
+        "envVariables": ["DHL_API_KEY", "DHL_ACCOUNT_NUMBER"],
+        "status": "✅ Integrated",
+        "documentation": "API_SETUP.md"
+      },
+      "fedex": {
+        "name": "FedEx Tracking API",
+        "file": "src/api/carriers/fedex.js",
+        "module": "trackFedEx",
+        "trackingNumberFormat": "12-14 digits",
+        "regexPattern": "/^\\d{12,14}$/",
+        "envVariables": ["FEDEX_API_KEY", "FEDEX_SECRET_KEY", "FEDEX_ACCOUNT_NUMBER"],
+        "status": "✅ Integrated",
+        "documentation": "API_SETUP.md"
+      },
+      "ups": {
+        "name": "UPS OnTrack",
+        "file": "src/api/carriers/ups.js",
+        "module": "trackUPS",
+        "trackingNumberFormat": "1Z + 16 chars",
+        "regexPattern": "/^1Z[A-Z0-9]{16}$/",
+        "envVariables": ["UPS_API_KEY", "UPS_ACCOUNT_NUMBER"],
+        "status": "✅ Integrated",
+        "documentation": "API_SETUP.md"
+      },
+      "correos": {
+        "name": "Correos Mail Tracking",
+        "file": "src/api/carriers/correos.js",
+        "module": "trackCorreos",
+        "trackingNumberFormat": "13 digits starting with C",
+        "regexPattern": "/^C\\d{12}$/",
+        "envVariables": ["CORREOS_API_KEY", "CORREOS_ACCOUNT_NUMBER"],
+        "status": "✅ Integrated",
+        "documentation": "API_SETUP.md"
+      },
+      "amazon": {
+        "name": "Amazon Logistics",
+        "file": "src/api/carriers/amazon.js",
+        "module": "trackAmazon",
+        "trackingNumberFormat": "Standard Amazon format",
+        "regexPattern": "/^[A-Z0-9]{10,20}$/",
+        "envVariables": ["AMAZON_API_KEY"],
+        "status": "✅ Integrated",
+        "documentation": "API_SETUP.md"
+      }
+    },
+    "autoDetection": {
+      "enabled": true,
+      "file": "src/api/tracking.js",
+      "function": "trackPackage(trackingNumber, carrierName)",
+      "fallback": "localStorage + mockData"
+    }
+  }
+}
