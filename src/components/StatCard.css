@@ -1,0 +1,65 @@
+.stat-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 255, 0.95) 100%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(200, 210, 230, 0.3);
+  border-radius: 18px;
+  padding: 28px;n  text-align: center;
+  animation: slideUp 0.5s ease-out;
+  animation-fill-mode: both;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(66, 135, 245, 0.1);
+  border-color: rgba(66, 135, 245, 0.2);
+}
+
+.stat-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(66, 135, 245, 0.1) 0%, rgba(108, 92, 231, 0.08) 100%);
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: #4287f5;
+  margin: 12px 0 6px 0;
+  letter-spacing: -0.5px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #8892a8;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  font-weight: 600;
+}
+
+.stat-subtitle {
+  font-size: 12px;
+  color: #b4bdca;
+  margin: 8px 0 0 0;
+  font-weight: 500;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

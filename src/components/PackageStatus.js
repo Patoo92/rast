@@ -1,5 +1,6 @@
 import React from 'react';
 import './PackageStatus.css';
+import CarrierLogo from './CarrierLogo';
 
 function PackageStatus({ data }) {
   const getStatusColor = (status) => {
@@ -22,7 +23,9 @@ function PackageStatus({ data }) {
       <div className="status-info">
         <div className="info-card">
           <span className="label">Transportista:</span>
-          <span className="value">{data.carrier}</span>
+          <div className="carrier-display">
+            <CarrierLogo carrier={data.carrier} size="medium" />
+          </div>
         </div>
         <div className="info-card">
           <span className="label">Estado:</span>

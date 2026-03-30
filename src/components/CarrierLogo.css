@@ -1,0 +1,59 @@
+.carrier-logo-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carrier-svg {
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+}
+
+.carrier-svg.small {
+  width: 50px;
+  height: 30px;
+}
+
+.carrier-svg.medium {
+  width: 80px;
+  height: 48px;
+}
+
+.carrier-svg.large {
+  width: 120px;
+  height: 72px;
+}
+
+.carrier-logo-container:hover .carrier-svg {
+  filter: drop-shadow(0 6px 12px rgba(66, 135, 245, 0.3)) brightness(1.05);
+  transform: scale(1.05);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carrier-svg.medium {
+    width: 70px;
+    height: 42px;
+  }
+
+  .carrier-svg.large {
+    width: 90px;
+    height: 54px;
+  }
+}
