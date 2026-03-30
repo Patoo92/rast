@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import './App.css';
 import TrackingForm from './components/TrackingForm';
 import PackageStatus from './components/PackageStatus';
+import Login from './components/Login';
+import { SkeletonLoaders } from './components/Skeleton';
+import { useAuth } from './context/AuthContext';
 import { trackPackage, getCarriers } from './api/tracking';
 
 function App() {
+  const { isAuthenticated, currentUser, logout } = useAuth();
   const [trackingData, setTrackingData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -53,16 +57,34 @@ function App() {
     }
   };
 
+  // Si no está autenticado, mostrar login
+  if (!isAuthenticated) {
+    return <Login />;
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>📦 Rastreo de Paquetes PWA</h1>
-        <p>Rastrea tus paquetes con APIs reales de DHL, FedEx, UPS, Correos y Amazon</p>
-        {isInstallable && (
-          <button className="install-btn" onClick={() => alert('Instalar desde el menú del navegador')}>
-            ⬇️ Instalar aplicación
-          </button>
-        )}
+        <div className="header-top">
+          <div className="header-left">
+            <h1>📦 RAST</h1>
+            <p>Rastreo de Paquetes PWA</p>
+          </div>
+          <div className="header-right">
+            <div className="user-info">
+              <span className="user-avatar">👤</span>
+              <span className="user-name">{currentUser?.username}</span>
+              <button className="logout-btn" onClick={logout}>
+                Salir
+              </button>
+            </div>
+            {isInstallable && (
+              <button className="install-btn" onClick={() => alert('Instalar desde el menú del navegador')}>
+                ⬇️ Instalar
+              </button>
+            )}
+          </div>
+        </div>
       </header>
 
       <main className="App-main">
@@ -74,18 +96,21 @@ function App() {
 
         {error && <div className="error-message">{error}</div>}
 
-        {trackingData && <PackageStatus data={trackingData} />}
+        {loading && <SkeletonLoaders count={2} />}
+
+        {trackingData && !loading && <PackageStatus data={trackingData} />}
 
         {!trackingData && !error && !loading && (
           <div className="welcome-message">
-            <h2>Bienvenido</h2>
+            <h2>👋 Bienvenido, {currentUser?.username}!</h2>
             <p>Ingresa un número de rastreo para ver el estado de tu paquete.</p>
-            <p>✨ Funciona sin conexión - tus búsquedas se guardan automáticamente</p>
+            <p>✨ Todos tus datos se guardan automáticamente - funciona sin conexión</p>
             <div className="carrier-info">
               <h3>🚚 Transportistas Soportados:</h3>
-              <ul>
+              <ul className="carriers-list">
                 {carriers.map((carrier) => (
                   <li key={carrier.id}>
+                    <span className="carrier-icon">{carrier.icon || '📦'}</span>
                     <strong>{carrier.name}</strong>
                   </li>
                 ))}

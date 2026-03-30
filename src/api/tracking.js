@@ -121,11 +121,11 @@ export async function trackMultiple(trackingNumbers) {
  */
 export async function getCarriers() {
   return [
-    { id: 'dhl', name: 'DHL', pattern: CARRIER_PATTERNS.DHL },
-    { id: 'fedex', name: 'FedEx', pattern: CARRIER_PATTERNS.FedEx },
-    { id: 'ups', name: 'UPS', pattern: CARRIER_PATTERNS.UPS },
-    { id: 'correos', name: 'Correos España', pattern: CARRIER_PATTERNS.Correos },
-    { id: 'amazon', name: 'Amazon Logistics', pattern: CARRIER_PATTERNS.Amazon }
+    { id: 'dhl', name: 'DHL', pattern: CARRIER_PATTERNS.DHL, icon: '📮' },
+    { id: 'fedex', name: 'FedEx', pattern: CARRIER_PATTERNS.FedEx, icon: '🚚' },
+    { id: 'ups', name: 'UPS', pattern: CARRIER_PATTERNS.UPS, icon: '🚛' },
+    { id: 'correos', name: 'Correos España', pattern: CARRIER_PATTERNS.Correos, icon: '📪' },
+    { id: 'amazon', name: 'Amazon Logistics', pattern: CARRIER_PATTERNS.Amazon, icon: '📦' }
   ];
 }
 
